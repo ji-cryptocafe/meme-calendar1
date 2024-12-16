@@ -21,7 +21,7 @@ app.get('/current-meme', (req, res) => {
         monthNumber += 1;
     }
 
-    const imagePath = path.join(__dirname, 'public', 'images', `${String(monthNumber).padStart(2, '0')}.jpg`);
+    const imagePath = path.join(__dirname, 'images', `${String(monthNumber).padStart(2, '0')}.jpg`);
 
     res.sendFile(imagePath, (err) => {
         if (err) {
