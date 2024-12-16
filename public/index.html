@@ -50,6 +50,7 @@
         body[aria-pressed="true"] {
             color: var(--text-color-dark); /* Dark mode text color */
         }
+
         /* Toggle styles */
         .toggle {
             cursor: pointer;
@@ -62,6 +63,7 @@
             height: 40px;
             border-radius: 50px;
             transition: 0.2s;
+            z-index: 1005;
         }
 
         .toggle i {
@@ -375,8 +377,236 @@
             font-size: 0.8rem;
         }
 
+
+
+
+        /* New game styles */
+        
+        #game-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #game-container {
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display:none;
+        }
+
+        .game-icon {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            max-width: 150px;
+            max-height: 150px;
+            user-select: none;
+            -webkit-user-drag: none;
+            z-index: 1002;
+            filter: drop-shadow(4px 4px 10px rgba(0, 255, 0, 0.5)); /* Shadow color, blur, and offset */
+        }
+
+        #game-score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 1001;
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for retro look */
+            color: #00ff00; /* Green text */
+            text-transform: uppercase;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #0fa,
+                0 0 42px #0fa;
+        }
+
+        #game-timer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 1001;
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for retro look */
+            color: #00ff00; /* Green text */
+            text-transform: uppercase;
+            text-shadow:
+            0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #0fa,
+                0 0 42px #0fa;
+        }
+
+        #game-start-btn, #submitName {
+            padding: 5px;
+            margin:15px;
+            width:250px;
+            height:40px;
+            left: 50%; 
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1001;
+        }
+
+        #game-start-btn:hover {
+            background-color: #45a049;
+        }
+
+        body.dark #game-start-btn {
+            background-color: #45a049;
+            color: white;
+        }
+        /*
+        #game-end-score {
+            color: white;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }*/
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--surface); /* Use your --surface variable for compatibility */
+            color: var(--color); /* Use your text color variable */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+        }
+
+        .modal-content input {
+            display:block;
+        }
+
+        #nameInput {
+            margin: 10px 0;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+                /* Retro Style High Score Table */
+        #highScores {
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for retro look */
+            color: #00ff00; /* Green text */
+            background-color: #000; /* Black background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glowing effect */
+            text-align: center;
+            margin: 20px auto;
+            width: 90%; /* Centered table */
+            max-width: 600px;
+        }
+
+        #highScores h2 {
+            color: #00ff00; /* Green title */
+            margin-bottom: 10px;
+        }
+
+        #highScores table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #highScores th, 
+        #highScores td {
+            text-transform: uppercase; /* All caps */
+            color: #00ff00; /* Green text */
+            padding: 10px;
+            border: 1px solid #00ff00; /* Green borders */
+            font-size: 16px;
+        }
+
+        #highScores th {
+            background-color: rgba(0, 255, 0, 0.1); /* Slightly dimmer green for header */
+        }
+
+        #highScores tr:nth-child(odd) {
+            background-color: rgba(0, 255, 0, 0.05); /* Subtle shading for rows */
+        }
+
+        #highScores tr:nth-child(even) {
+            background-color: rgba(0, 255, 0, 0.1); /* Subtle shading for rows */
+        }
+
+        #highScores tr:hover {
+            background-color: rgba(0, 255, 0, 0.3); /* Bright highlight on hover */
+        }
+
+        @keyframes shrink {
+            from {
+                transform: scale(1); /* Start at full size */
+            }
+            to {
+                transform: scale(0.5); /* Shrink to half size */
+            }
+        }
+
+        .shrink {
+            animation: shrink var(--duration, 1s) linear forwards;
+        }
+
+        #countdownDisplay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10em;
+            color: #fff;
+            font-weight: bold;
+            display: none; /* Initially hidden */
+            z-index: 1000; /* Ensure it appears above other elements */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for retro look */
+            text-transform: uppercase; /* All caps */
+            color: #00ff00; /* Green text */
+        }
     </style>
 </head>
+
 <body class="light">
     <button aria-pressed="false">
         <span class="sr-only">Toggle Dark Mode</span>
@@ -404,7 +634,7 @@
         <img id="memeImage" src="" alt="Current Meme" />
     </div>
 
-    <div id="wastedTime" class="fade-in">Ich fühle mich geehrt dass du bereits <span id="timeSpent">0</span> Sekunden hier verbracht hast und es ist ok wenn du jetzt weiterziehst ;)</div>
+    <div id="wastedTime" class="fade-in">Vielen Dank für die Spende von <span id="timeSpent">0</span> Sekunden deiner Lebenszeit ;)</div>
     
     <div id="countdown" class="fade-in">
         Zeit bis zum nächsten Meme Reveal : 
@@ -446,8 +676,47 @@
         </div>
     </div>
 
+    <div id="game-overlay"></div>
+    <!-- New game overlay -->
+    <div id="game-score" class="fade-in">Punkte: 0</div>
+    <div id="game-timer" class="fade-in">Zeit: 30</div>
+    <div id="game-container" class="fade-in"></div>
+    <button id="game-start-btn" class="fade-in">Spiel starten</button>
+    <!-- <div id="game-end-score"></div>-->
+
+    <!-- High Scores Section -->
+    <div id="highScores" class="fade-in">
+        <h2>High Scores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="highScoreList">
+                <!-- Scores will be dynamically populated here -->
+            </tbody>
+        </table>
+    </div>
+    <div id="countdownDisplay" class="countdown-display">
+        <span id="countdownNumber">3</span>
+    </div>
     
-    
+    <!-- Modal for Name Input -->
+
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <h3>Game Over!</h3>
+            <p>Your score: <span id="finalScore">0</span></p>
+            <label for="nameInput">Enter your name (3 characters):</label>
+            <input id="nameInput" type="text" maxlength="3" style="text-transform:uppercase;" />
+            <button id="submitName">Submit</button>
+            
+        </div>
+    </div>
+
 
     <script>
         const BUTTON = document.querySelector('[aria-pressed]');    
@@ -458,6 +727,7 @@
             BUTTON.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
             document.body.classList.toggle('dark', !isPressed);
             document.body.classList.toggle('light', isPressed);
+            console.log("button pressed");
         });
 
         // Automatically set theme based on user preference
@@ -486,6 +756,14 @@
                     document.getElementById('countdown').classList.add('visible');
                     document.getElementById('progressBar').classList.add('visible');
                 }, 3000);
+
+                setTimeout(() => {
+                    document.getElementById('game-score').classList.add('visible');
+                    document.getElementById('game-timer').classList.add('visible');
+                    document.getElementById('game-container').classList.add('visible');
+                    document.getElementById('game-start-btn').classList.add('visible');
+                    document.getElementById('highScores').classList.add('visible');
+                }, 4000);
             })
             .catch(error => console.error('Error fetching meme:', error));
 
@@ -607,6 +885,248 @@
             const progressBar = document.getElementById("progressBar");
             progressBar.style.width = `${progressPercentage}%`;
         }
+
+
+        // New game logic
+        const gameOverlay = document.getElementById('game-overlay');
+        const gameContainer = document.getElementById('game-container');
+        const gameScoreElement = document.getElementById('game-score');
+        const gameTimerElement = document.getElementById('game-timer');
+        const gameStartBtn = document.getElementById('game-start-btn');
+        // const gameEndScoreElement = document.getElementById('game-end-score');
+
+        const gameIcons = [
+            'citiworks.png', 
+            'countcare.png', 
+            'effizienz.png', 
+            'entega.png', 
+            'enetz.png'
+        ];
+
+
+
+        
+        let gameScore = 0;
+        let gameActive = false;
+        let gameInterval;
+        let gameTimer = 30;
+        let timerInterval;
+
+        function createGameIcon() {
+            if (!gameActive) return;
+
+            // Create icon element
+            const icon = document.createElement('img');
+            icon.classList.add('game-icon');
+            
+            // Select random icon
+            const iconSrc = gameIcons[Math.floor(Math.random() * gameIcons.length)];
+            icon.src = `/images/${iconSrc}`;
+
+            // Random position
+            const containerRect = gameContainer.getBoundingClientRect();
+            const x = Math.random() * (containerRect.width - 150);
+            const y = Math.random() * (containerRect.height - 150);
+            
+            icon.style.left = `${x}px`;
+            icon.style.top = `${y}px`;
+
+            // Random initial size (larger sizes give less score)
+            const initialSize = Math.random() * 0.6 + 0.4; // Random size between 50% and 100%
+            const shrinkFactor = initialSize; // This will affect the score
+            icon.style.transform = `scale(${initialSize})`; // Apply the initial size
+
+            // Duration the icon stays on screen (shorter duration means higher score)
+            const duration = Math.random() * 1300 + 200; // 1000ms to 2000ms
+            const iconSpawnTime = Date.now(); // Record when the icon appears
+
+            // Add dynamic shrinking animation
+            icon.style.setProperty('--duration', `${duration / 1000}s`);
+            icon.classList.add('shrink');
+
+            // Click event
+            icon.addEventListener('click', () => {
+                const clickTimestamp = Date.now(); // Time when the user clicks
+
+                // Calculate the time between the icon's appearance and the click (faster clicks get higher score)
+                const clickSpeedFactor = Math.max(0, (duration - (clickTimestamp - iconSpawnTime)) / duration); // Higher is faster
+
+                // Calculate score based on size, duration, and click speed
+                const sizeScore = (1 / shrinkFactor) * 20; // Smaller icons give higher score
+                const speedBonus = Math.max(1, clickSpeedFactor * 40); // Speed bonus for fast clicks
+
+                // Combine all factors to calculate the final score for this click
+                const clickScore = Math.round(sizeScore * speedBonus);
+
+                // Add the score
+                gameScore += clickScore;
+                gameScoreElement.textContent = `Punkte: ${gameScore}`;
+
+                // Remove icon
+                icon.remove();
+            });
+
+            // Add to container
+            gameContainer.appendChild(icon);
+
+            // Remove icon after the set duration if not clicked
+            setTimeout(() => {
+                if (icon.parentElement) {
+                    icon.remove();
+                }
+            }, duration);
+        }
+
+        function updateTimer() {
+            gameTimer--;
+            gameTimerElement.textContent = `Zeit: ${gameTimer}`;
+
+            if (gameTimer <= 0) {
+                endGame();
+            }
+        }
+
+        function startGame() {
+            // Hide the countdown if it's visible from a previous round
+            const countdownDisplay = document.getElementById('countdownDisplay');
+            countdownDisplay.style.display = 'block'; // Show the countdown
+            const countdownNumber = document.getElementById('countdownNumber');
+            
+            // Show game overlay
+            gameOverlay.style.display = 'flex';
+
+            // Start the countdown
+            let countdownValue = 3; // Start from 3
+            countdownNumber.textContent = countdownValue;
+            
+            const countdownInterval = setInterval(() => {
+                countdownValue--;
+                countdownNumber.textContent = countdownValue;
+                
+                if (countdownValue === 0) {
+                    clearInterval(countdownInterval);
+                    countdownDisplay.style.display = 'none'; // Hide the countdown
+                    startGameTimer(); // Start the game after countdown ends
+                }
+            }, 1000); // Decrease every 1 second
+
+            // Disable start button during countdown
+            gameStartBtn.disabled = true;
+            gameStartBtn.textContent = 'Spiel läuft...';
+        }
+
+        function startGameTimer() {
+            // Reset game state
+            gameScore = 0;
+            gameTimer = 30;
+            gameScoreElement.textContent = 'Punkte: 0';
+            gameTimerElement.textContent = 'Zeit: 30';
+            gameContainer.innerHTML = ''; // Clear previous icons
+            gameContainer.style.display='flex';
+            gameActive = true;
+
+            
+
+            // Start spawning icons
+            gameInterval = setInterval(() => {
+                createGameIcon();
+            }, Math.random() * 1500 + 500); // 500ms to 1500ms between spawns
+
+            // Start timer
+            timerInterval = setInterval(updateTimer, 1000);
+
+            // Disable start button during game
+            gameStartBtn.disabled = true;
+            gameStartBtn.textContent = 'Spiel läuft...';
+        }
+
+        function endGame() {
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            // Hide game elements
+            gameStartBtn.disabled = false;
+            gameStartBtn.textContent = 'Spiel starten';
+            
+            // disable overlay
+            gameOverlay.style.display = 'none';
+            gameContainer.style.display = 'none';
+
+            // Show final score
+            const nameModal = document.getElementById('nameModal');
+            const finalScore = document.getElementById('finalScore');
+            finalScore.innerText = gameScore;
+            nameModal.style.display = 'flex'; // Show modal
+        }
+
+
+
+        // Attach event listener to start button
+        gameStartBtn.addEventListener('click', startGame);
+
+        // Close game overlay when clicking outside the game
+        gameOverlay.addEventListener('click', (event) => {
+            if (event.target === gameOverlay && !gameActive) {
+                gameOverlay.style.display = 'none';
+            }
+        });
+
+
+        // Submit the score
+        document.getElementById('submitName').addEventListener('click', async () => {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.toUpperCase();
+
+            if (name.length !== 3) {
+                alert('Name must be exactly 3 characters.');
+                return;
+            }
+
+            const response = await fetch('/api/submit-score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, score: gameScore }),
+            });
+
+            if (response.ok) {
+                alert('Score submitted successfully!');
+                fetchHighScores(); // Refresh high scores
+            } else {
+                const error = await response.json();
+                alert(`Error submitting score: ${error.error}`);
+            }
+
+            // Reset game and hide modal
+            gameScore = 0;
+            document.getElementById('game-score').innerText = "Punkte: 0";
+            document.getElementById('nameModal').style.display = 'none';
+            nameInput.value = ''; // Clear input
+        });
+
+
+        // Fetch and display high scores
+        async function fetchHighScores() {
+            const response = await fetch('/api/high-scores');
+            const highScores = await response.json();
+
+            const highScoreList = document.getElementById('highScoreList');
+            highScoreList.innerHTML = ''; // Clear existing rows
+
+            highScores.forEach(({ name, score, date }) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${score}</td>
+                    <td>${date}</td>
+                `;
+                highScoreList.appendChild(row);
+            });
+        }
+
+        // Fetch high scores on page load
+        fetchHighScores();
+
 
 
         // Update progress bar every minute
