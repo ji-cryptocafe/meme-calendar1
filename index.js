@@ -3,29 +3,34 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/css/darkmode-toggle.css', (req, res) => {
     res.sendFile(__dirname + '/public/css/darkmode-toggle.css');
 });
 // Serve the current month's meme image
 app.get('/current-meme', (req, res) => {
     const currentDate = new Date();
-    let monthNumber = currentDate.getMonth(); // 0 for January, 1 for February, ..., 11 for December
+    let monthNumber = currentDate.getMonth();
 
-    // Adjust month number for your naming convention
-    if (monthNumber === 11) { // December
-        monthNumber = 0; // Serve '00.jpg'
+    // Adjust for naming convention
+    if (monthNumber === 11) {
+        monthNumber = 0;
     } else {
-        monthNumber += 1; // Increment month number for naming (01, 02, ..., 11)
+        monthNumber += 1;
     }
 
-    const imagePath = `/images/${String(monthNumber).padStart(2, '0')}.jpg`; // Format as two digits
-    res.sendFile(path.join(__dirname, 'public', imagePath), (err) => {
+    const imagePath = path.join(__dirname, 'public', 'images', `${String(monthNumber).padStart(2, '0')}.jpg`);
+
+    res.sendFile(imagePath, (err) => {
         if (err) {
-            res.status(err.status).end();
+            console.error(err); // Log the error for debugging
+            res.status(404).send('Image not found');
         }
     });
 });
+
 
 
 
